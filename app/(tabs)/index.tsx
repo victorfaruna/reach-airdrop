@@ -1,74 +1,97 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import HomeHeader from "@/components/HomeHeader";
+import { fontScale, scale } from "@/config/size";
+import Svg, { Path } from "react-native-svg";
+import MissionCTA from "@/components/MissionCTA";
+import HomeStats from "@/components/HomeStats";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+export default function Home() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <SafeAreaView style={styles.container}>
+      <View style={{ paddingHorizontal: scale(20), paddingTop: scale(20) }}>
+        <HomeHeader />
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{ gap: scale(24), paddingHorizontal: scale(20) }}>
+          <View style={styles.balanceContainer}>
+            <View>
+              <Text style={styles.balanceLabel}>Total Points</Text>
+              <Text style={styles.balanceText}>1,088,888</Text>
+            </View>
+            {/* ... */}
+            <View>
+              <Text style={styles.balanceLabel}>Today&apos;s Points</Text>
+              <Text style={styles.balanceText}>
+                340
+                <Svg
+                  width="21"
+                  height="20"
+                  viewBox="0 0 21 20"
+                  fill="none"
+                  // xmlns="http://www.w3.org/2000/svg"
+                >
+                  <Path
+                    d="M10.25 9.871L8.129 11.9927L7.06775 10.9323L10.25 7.75L13.4322 10.9323L12.371 11.9927L10.25 9.871Z"
+                    fill="#5CC738"
+                  />
+                </Svg>
+              </Text>
+            </View>
+          </View>
+
+          <MissionCTA />
+
+          <Text
+            style={{
+              width: scale(212),
+              fontFamily: "Satoshi-Medium",
+              fontSize: fontScale(28),
+              color: "#8B9886",
+              lineHeight: fontScale(38),
+            }}
+          >
+            You&apos;ve got{" "}
+            <Text style={{ color: "#0D140A", fontFamily: "Satoshi-Bold" }}>
+              125P
+            </Text>{" "}
+            for today
+          </Text>
+
+          <HomeStats />
+          <View style={{ height: 10 }} />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    gap: scale(24),
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+
+  balanceContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#F7FAF6",
+    paddingVertical: scale(15),
+    paddingHorizontal: scale(30),
+    borderRadius: scale(16),
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+
+  balanceLabel: {
+    color: "#8B9886",
+    fontFamily: "Satoshi-Regular",
+    fontSize: fontScale(14),
+  },
+
+  balanceText: {
+    color: "#0D140A",
+    fontFamily: "Satoshi-Bold",
+    fontSize: fontScale(20),
   },
 });
