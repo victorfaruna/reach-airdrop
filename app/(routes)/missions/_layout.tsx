@@ -16,6 +16,10 @@ export default function MissionsLayout() {
                 name="mission-completed"
                 options={{ headerShown: false, animation: "ios_from_right" }}
             />
+            <Stack.Screen
+                name="invite-friends"
+                options={{ headerShown: false, animation: "ios_from_right" }}
+            />
         </Stack>
     );
 }

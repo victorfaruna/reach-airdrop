@@ -8,6 +8,8 @@ import { StyleSheet } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import DailyMissionsCTA from "@/components/Missions/DailyMissionsCTA";
 import Svg, { Path } from "react-native-svg";
+import TaskList from "@/components/Missions/TaskList";
+import { router } from "expo-router";
 
 export default function missions() {
     const { color } = useColors();
@@ -64,7 +66,12 @@ export default function missions() {
                     <DailyMissionsCTA />
                     {/* space */}
                     <View style={styles.menuTray}>
-                        <TouchableOpacity style={styles.menuTrayItem}>
+                        <TouchableOpacity
+                            style={[
+                                styles.menuTrayItem,
+                                { backgroundColor: color.grey },
+                            ]}
+                        >
                             <Text
                                 style={[
                                     styles.pageText,
@@ -74,7 +81,12 @@ export default function missions() {
                                 Tasks
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.menuTrayItem}>
+                        <TouchableOpacity
+                            style={styles.menuTrayItem}
+                            onPress={() =>
+                                router.push("/(routes)/missions/share-post")
+                            }
+                        >
                             <Svg
                                 width="16"
                                 height="16"
@@ -127,6 +139,8 @@ export default function missions() {
                             </Text>
                         </TouchableOpacity>
                     </View>
+                    {/* space */}
+                    <TaskList />
                 </View>
             </ScrollView>
         </CustomSafeAreaView>
