@@ -20,6 +20,18 @@ export default function MissionsLayout() {
                 name="invite-friends"
                 options={{ headerShown: false, animation: "ios_from_right" }}
             />
+            <Stack.Screen
+                name="donate"
+                options={{ headerShown: false, animation: "ios_from_right" }}
+            />
+            <Stack.Screen
+                name="donate-with-card"
+                options={{ headerShown: false, animation: "ios_from_right" }}
+            />
+            <Stack.Screen
+                name="donation-successful"
+                options={{ headerShown: false, animation: "ios_from_right" }}
+            />
         </Stack>
     );
 }

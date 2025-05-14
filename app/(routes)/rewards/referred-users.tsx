@@ -58,7 +58,7 @@ export default function ReferredUsers() {
                             }}
                         >
                             <Text style={{ color: color.accent }}>Manny</Text>{" "}
-                            has joined over!
+                            has joined Reach!
                         </Text>
                         <Text
                             style={[styles.pageText, { color: color.textSub }]}

@@ -38,7 +38,7 @@ export default function Signup() {
         container: {
             flex: 1,
             backgroundColor: color.background,
-            paddingHorizontal: widthScale(15),
+            paddingHorizontal: widthScale(20),
         },
 
         pageTitle: {

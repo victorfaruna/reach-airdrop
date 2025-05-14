@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import CustomSafeAreaView from "@/components/Global/CustomSafeAreaView";
 import GeneralHeader from "@/components/Header/GeneralHeader";
 import { ScrollView } from "react-native-gesture-handler";
@@ -10,10 +10,13 @@ import DailyMissionsCTA from "@/components/Missions/DailyMissionsCTA";
 import Svg, { Path } from "react-native-svg";
 import TaskList from "@/components/Missions/TaskList";
 import { router } from "expo-router";
+import DonationCTA from "@/components/Missions/DonationCTA";
 
 export default function missions() {
     const { color } = useColors();
-
+    const [activeMenu, setActiveMenu] = useState<
+        "tasks" | "daily" | "donations"
+    >("tasks");
     const styles = StyleSheet.create({
         pageContainer: {
             gap: heightScale(24),
@@ -67,9 +70,12 @@ export default function missions() {
                     {/* space */}
                     <View style={styles.menuTray}>
                         <TouchableOpacity
+                            onPress={() => setActiveMenu("tasks")}
                             style={[
                                 styles.menuTrayItem,
-                                { backgroundColor: color.grey },
+                                activeMenu === "tasks" && {
+                                    backgroundColor: color.grey,
+                                },
                             ]}
                         >
                             <Text
@@ -82,10 +88,13 @@ export default function missions() {
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.menuTrayItem}
-                            onPress={() =>
-                                router.push("/(routes)/missions/share-post")
-                            }
+                            style={[
+                                styles.menuTrayItem,
+                                activeMenu === "daily" && {
+                                    backgroundColor: color.grey,
+                                },
+                            ]}
+                            onPress={() => setActiveMenu("daily")}
                         >
                             <Svg
                                 width="16"
@@ -115,7 +124,15 @@ export default function missions() {
                                 Daily
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.menuTrayItem}>
+                        <TouchableOpacity
+                            onPress={() => setActiveMenu("donations")}
+                            style={[
+                                styles.menuTrayItem,
+                                activeMenu === "donations" && {
+                                    backgroundColor: color.grey,
+                                },
+                            ]}
+                        >
                             <Svg
                                 width="20"
                                 height="20"
@@ -140,7 +157,8 @@ export default function missions() {
                         </TouchableOpacity>
                     </View>
                     {/* space */}
-                    <TaskList />
+                    {activeMenu === "tasks" && <TaskList />}
+                    {activeMenu === "donations" && <DonationCTA />}
                 </View>
             </ScrollView>
         </CustomSafeAreaView>

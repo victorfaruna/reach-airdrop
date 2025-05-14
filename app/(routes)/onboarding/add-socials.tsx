@@ -23,7 +23,7 @@ export default function AddSocials() {
         container: {
             flex: 1,
             backgroundColor: color.background,
-            paddingHorizontal: widthScale(15),
+            paddingHorizontal: widthScale(20),
             gap: heightScale(24),
         },
 

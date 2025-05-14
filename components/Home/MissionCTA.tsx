@@ -51,7 +51,7 @@ export default function MissionCTA() {
                             color: color.textMain,
                         }}
                     >
-                        Manny has joined Over
+                        Manny has joined Reach
                     </Text>
                     <HeadshotCluster />
                 </View>
