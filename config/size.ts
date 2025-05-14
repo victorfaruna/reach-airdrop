@@ -9,11 +9,13 @@ const BASE_HEIGHT = 812;
 
 // Scale size based on width
 const scale = (size: any) => (width / BASE_WIDTH) * size;
+const widthScale = (size: any) => (width / BASE_WIDTH) * size;
+const heightScale = (size: any) => (height / BASE_HEIGHT) * size;
 
 // Scale font size based on width
 const fontScale = (size: any) => {
-  const scaledSize = (width / BASE_WIDTH) * size;
-  return PixelRatio.roundToNearestPixel(scaledSize);
+    const scaledSize = (width / BASE_WIDTH) * size;
+    return PixelRatio.roundToNearestPixel(scaledSize);
 };
 
-export { scale, fontScale };
+export { scale, widthScale, heightScale, fontScale };
